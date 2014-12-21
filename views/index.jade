@@ -3,3 +3,12 @@ extends layout
 block content
     header.page-header
         h1.page-header__title Space Race Game
+
+    main.app
+        form.join(role="form", action="#", method="post")
+            label(for="join-username") Join Game
+            input#join-username(placeholder="Username")
+            input#join-game(type="submit", value="Join")
+
+        h3 Current Players
+            ul.players
