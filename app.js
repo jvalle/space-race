@@ -27,10 +27,25 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
+var players = [];
+
 // on new connection
 io.on('connection', function (socket) {
-    console.log(socket);
-    socket.emit('newPlaya', { message: 'A new player has joined the server.' })
+    console.log('connection fired');
+
+    socket.emit('players updated', players);
+
+    socket.emit('newPlaya', { message: 'A new player has joined the server.' });
+
+    socket.on('new player', function (player) {
+        addPlayer(player);
+    });
+
+    function addPlayer (player) {
+        console.log('add player called', player)
+        players.push(player);
+        socket.emit('players updated', players);
+    };
 });
 
 // catch 404 and forward to error handler
