@@ -26,6 +26,8 @@
     function updatePlayerList (players) {
         var $playerList = $('.players');
 
+        $playerList.empty();
+
         for (var i = 0, len = players.length; i < len; i ++) {
             $playerList.append('<li>' + players[i].username + '</>');
         }
